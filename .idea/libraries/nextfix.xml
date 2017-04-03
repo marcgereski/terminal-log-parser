@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="nextfix">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/quickfix/nextfix.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
