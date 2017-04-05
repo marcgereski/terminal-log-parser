@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FixGwLogParser implements LogParser {
+public class FixLogParser implements LogParser {
     public static final String FIX50 = "FIX50_ext.xml";
     public static final String USER_DIR = "lib/quickfix";
     public static final String DICT_HOME = USER_DIR + "/etc/";
@@ -21,7 +21,7 @@ public class FixGwLogParser implements LogParser {
     private final MessageFactory factory;
     private final FixParser fixParser;
 
-    public FixGwLogParser(FixParser fixParser) throws ConfigError {
+    public FixLogParser(FixParser fixParser) throws ConfigError {
         dictionary = new DataDictionary(DICT_HOME + "/" + FIX50);
         factory = new KaseFixMessageFactory();
         this.fixParser = fixParser;

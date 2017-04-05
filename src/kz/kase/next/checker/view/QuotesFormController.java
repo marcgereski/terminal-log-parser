@@ -5,9 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import kz.kase.next.checker.model.domain.QuoteHolder;
 import kz.kase.next.checker.model.eventbus.EventBus;
 import kz.kase.next.checker.view.cell.QuoteCells;
@@ -21,7 +22,7 @@ import static kz.kase.next.checker.view.helpers.TableUtil.installColumn;
 
 public class QuotesFormController implements Initializable, EventBus.Listener {
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
     public static final double DELTA = 0.0000001;
     private QuoteModel quoteModel;
     public static final Comparator<QuoteHolder> BID_COMPARATOR = new QuoteComparators.BidComparator();
@@ -31,7 +32,7 @@ public class QuotesFormController implements Initializable, EventBus.Listener {
     @FXML
     private TableView<QuoteHolder> oldStyleQuotesTable;
     @FXML
-    private VBox quotesPanel;
+    private HBox quotesPanel;
     @FXML
     private TableColumn<QuoteHolder, Long> bidColumn;
     @FXML
@@ -42,6 +43,8 @@ public class QuotesFormController implements Initializable, EventBus.Listener {
     private TableColumn<QuoteHolder, Long> my;
     @FXML
     private Label labelDateTime;
+    @FXML
+    private ListView<String> logList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,7 +75,7 @@ public class QuotesFormController implements Initializable, EventBus.Listener {
     }
 
     private void setQuote(QuoteHolder quote) {
-        labelDateTime.setText(quote.getReceivedTime().plusHours(6).format(formatter));
+        labelDateTime.setText(quote.getReceivedTime().format(formatter));
         quoteModel.addQuote(quote);
         quoteModel.update();
     }
@@ -274,7 +277,10 @@ public class QuotesFormController implements Initializable, EventBus.Listener {
 
     @FXML
     public void nextQuote() {
-        if (iterator.hasNext())
-            setQuote(iterator.next());
+        if (iterator.hasNext()) {
+            QuoteHolder q = iterator.next();
+            setQuote(q);
+            logList.getItems().addAll(q.toString());
+        }
     }
 }

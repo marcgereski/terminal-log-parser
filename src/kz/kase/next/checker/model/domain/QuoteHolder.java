@@ -2,8 +2,11 @@ package kz.kase.next.checker.model.domain;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class QuoteHolder {
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
+
     public enum Type {BUY, SELL}
 
     private final String symbol;
@@ -38,6 +41,11 @@ public class QuoteHolder {
 
     public LocalDateTime getReceivedTime() {
         return receivedTime;
+    }
+
+    @Override
+    public String toString() {
+        return receivedTime.format(formatter) + "  " + type.name() + "  price: " + price + "  qty: " + qty;
     }
 
 

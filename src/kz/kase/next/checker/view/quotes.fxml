@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?scenebuilder-preview-i18n-resource ../../../../../../message.properties?>
-
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane id="limit-order-pane" fx:id="mainPane" prefHeight="503.0" prefWidth="352.0"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="kz.kase.next.checker.view.QuotesFormController">
+
+<BorderPane id="limit-order-pane" fx:id="mainPane" maxWidth="900.0" prefHeight="773.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kz.kase.next.checker.view.QuotesFormController">
     <center>
 
-        <VBox fx:id="quotesPanel" maxHeight="Infinity" spacing="2" BorderPane.alignment="CENTER">
+        <HBox fx:id="quotesPanel" maxHeight="Infinity" prefHeight="424.0" prefWidth="339.0" spacing="2" BorderPane.alignment="CENTER">
             <padding>
-                <Insets bottom="0" left="0" right="0" top="0"/>
+                <Insets bottom="0" left="0" right="0" top="0" />
             </padding>
             <children>
-                <TableView id="old-quotes" fx:id="oldStyleQuotesTable" maxWidth="550" styleClass="old-quotes"
-                           VBox.vgrow="ALWAYS">
+                <TableView id="old-quotes" fx:id="oldStyleQuotesTable" maxWidth="550" prefHeight="424.0" prefWidth="366.0" styleClass="old-quotes" VBox.vgrow="ALWAYS">
                     <columns>
                         <!--<TableColumn fx:id="myAsk" text="%quote.title.my.ask" prefWidth="90" id="ask-col"/>-->
-                        <TableColumn id="ask-col" fx:id="askColumn" prefWidth="80" sortable="false"
-                                     text="%quote.title.ask"/>
-                        <TableColumn fx:id="priceColumn" prefWidth="50" sortable="false" text="%quote.price"/>
-                        <TableColumn id="bid-col" fx:id="bidColumn" prefWidth="80" sortable="false"
-                                     text="%quote.title.bid"/>
-                        <TableColumn id="bid-col" fx:id="my" prefWidth="80" sortable="false" text="%quote.title.my"/>
+                        <TableColumn id="ask-col" fx:id="askColumn" prefWidth="80" sortable="false" text="%quote.title.ask" />
+                        <TableColumn fx:id="priceColumn" prefWidth="50" sortable="false" text="%quote.price" />
+                        <TableColumn id="bid-col" fx:id="bidColumn" prefWidth="80" sortable="false" text="%quote.title.bid" />
+                        <TableColumn id="bid-col" fx:id="my" prefWidth="80" sortable="false" text="%quote.title.my" />
                     </columns>
                 </TableView>
             </children>
-
-        </VBox>
+        </HBox>
     </center>
 
     <bottom>
         <VBox prefHeight="79.0" prefWidth="352.0" BorderPane.alignment="CENTER">
             <children>
                 <Label fx:id="labelDateTime" text="" />
-                <Button mnemonicParsing="false" text="&gt;&gt;" onAction="#nextQuote"/>
+                <Button mnemonicParsing="false" onAction="#nextQuote" text="&gt;&gt;" />
             </children>
         </VBox>
     </bottom>
+   <right>
+      <ListView fx:id="logList" maxHeight="Infinity" maxWidth="Infinity" minHeight="0" minWidth="0" prefHeight="424.0" prefWidth="530.0" BorderPane.alignment="BOTTOM_RIGHT" />
+   </right>
 
 </BorderPane>

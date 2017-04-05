@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface LogParser {
     List<String> parseLogToBlocks(Path logfile);
-    List<QuoteHolder> parseQuotes(String fixMessage);
+    List<QuoteHolder> parseQuotes(String logMessage);
 }

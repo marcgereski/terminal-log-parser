@@ -1,9 +1,8 @@
 package kz.kase.next.test.console;
 
 
-import kz.kase.next.checker.fix.FixParserTr;
 import kz.kase.next.checker.model.domain.QuoteHolder;
-import kz.kase.next.checker.parser.FixGwLogParser;
+import kz.kase.next.checker.parser.TerminalLogParser;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,15 +13,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestFixGwLogParser {
+public class TestTerminalLogParser {
     List<QuoteHolder> quoteHolder = new ArrayList<>();
 
     @Before
     @Test
     public void fixGwParserReadFileTest() throws ConfigError {
-        FixParserTr fixParser = new FixParserTr();
-        FixGwLogParser parser1 = new FixGwLogParser(fixParser);
-        Path file = Paths.get("data/md.txt");
+        TerminalLogParser parser1 = new TerminalLogParser();
+        Path file = Paths.get("data/next.log.2017-03-29");
         List<String> list = parser1.parseLogToBlocks(file);
 
         for (String data : list) {
@@ -39,6 +37,4 @@ public class TestFixGwLogParser {
                     + " " + q.getType() + " " + q.getPrice() + " " + q.getQty());
         });
     }
-
-
 }

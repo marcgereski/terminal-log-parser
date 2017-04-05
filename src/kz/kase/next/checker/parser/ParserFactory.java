@@ -9,12 +9,15 @@ public class ParserFactory {
         LogParser logParser = null;
 
         switch (value) {
-            case "FixGw":
+            case "Fix":
                 try {
-                    logParser = new FixGwLogParser(new FixParserTr());
+                    logParser = new FixLogParser(new FixParserTr());
                 } catch (ConfigError configError) {
                     configError.printStackTrace();
                 }
+                break;
+            case "Terminal":
+                logParser = new TerminalLogParser();
                 break;
         }
         return logParser;

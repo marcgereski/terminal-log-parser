@@ -33,7 +33,7 @@ public class FixParserTr implements FixParser{
             double price = g.getDouble(FIELD_MD_ENTRY_PRICE);
             LocalDateTime dt = FixParseHelper.parse(receivedTime);
 
-            result.add(new QuoteHolder(symbol, type, price, qty, dt));
+            result.add(new QuoteHolder(symbol, type, price, qty, dt.plusHours(6)));
         }
 
         return result;

@@ -5,6 +5,7 @@ import kz.kase.next.checker.parser.LogParser;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -26,4 +27,7 @@ public class MainConsole {
     }
 
 
+    public static void main(String[] args) {
+        System.out.println(new Date(1490763600539L));
+    }
 }

@@ -25,17 +25,26 @@ public class MainGui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         String symbol = InstrSymbols.USDKZT_TOD;
+        String source = "md.txt";
+//        String source = "md_01032017.txt";
+//        String source = "next.log.2017-03-29";
+//        String source = "next.log";
+
+        String parserType = "Fix";
+//        String parserType = "Terminal";
+
 
         ResourceBundle bundle = ResourceBundle.getBundle("message", new Locale("en"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/quotes.fxml"), bundle);
         Parent root = loader.load();
 
         primaryStage.setTitle(symbol);
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 900, 700));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
-        LogParser logParser = ParserFactory.getParser("FixGw");
-        Path file = Paths.get("data/md.txt");
+        LogParser logParser = ParserFactory.getParser(parserType);
+        Path file = Paths.get("data/" + source);
         loadData(logParser, file, symbol);
     }
 
