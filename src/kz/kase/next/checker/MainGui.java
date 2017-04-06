@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import kz.kase.next.checker.model.InstrSymbols;
 import kz.kase.next.checker.model.domain.QuoteHolder;
 import kz.kase.next.checker.model.eventbus.EventBus;
 import kz.kase.next.checker.model.eventbus.EventMessage;
@@ -24,15 +23,12 @@ public class MainGui extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String symbol = InstrSymbols.USDKZT_TOD;
-        String source = "md.txt";
-//        String source = "md_01032017.txt";
-//        String source = "next.log.2017-03-29";
-//        String source = "next.log";
+        Parameters params = getParameters();
+        List<String> args = params.getRaw();
 
-        String parserType = "Fix";
-//        String parserType = "Terminal";
-
+        ParserFactory.ParserType parserType = ParserFactory.ParserType.valueOf(args.get(0));
+        String source = args.get(1);
+        String symbol = args.get(2);
 
         ResourceBundle bundle = ResourceBundle.getBundle("message", new Locale("en"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/quotes.fxml"), bundle);
@@ -44,7 +40,7 @@ public class MainGui extends Application {
         primaryStage.show();
 
         LogParser logParser = ParserFactory.getParser(parserType);
-        Path file = Paths.get("data/" + source);
+        Path file = Paths.get(source);
         loadData(logParser, file, symbol);
     }
 

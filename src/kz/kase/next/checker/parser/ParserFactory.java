@@ -5,20 +5,26 @@ import kz.kase.next.checker.fix.FixParserTr;
 import quickfix.ConfigError;
 
 public class ParserFactory {
-    public static LogParser getParser(String value) {
+    public static enum ParserType {
+        Fix, MD, Term1, Term2, Core
+    }
+
+    public static LogParser getParser(ParserType value) {
         LogParser logParser = null;
 
         switch (value) {
-            case "Fix":
+            case Fix:
                 try {
                     logParser = new FixLogParser(new FixParserTr());
                 } catch (ConfigError configError) {
                     configError.printStackTrace();
                 }
                 break;
-            case "Terminal":
+            case Term1:
                 logParser = new TerminalLogParser();
                 break;
+            default:
+                logParser = new TerminalLogParser();
         }
         return logParser;
     }
